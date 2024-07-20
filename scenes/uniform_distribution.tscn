@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://ciqugp0mdtdn2"]
+
+[ext_resource type="Script" path="res://scripts/UniformDistribution.gd" id="1_lg2jr"]
+[ext_resource type="PackedScene" uid="uid://bd5oie8xihyir" path="res://scenes/pickup_able_marker.tscn" id="2_eo30v"]
+
+[node name="UniformDistribution" type="Node2D"]
+script = ExtResource("1_lg2jr")
+
+[node name="StartMarker" parent="." instance=ExtResource("2_eo30v")]
+
+[node name="EndMarker" parent="." instance=ExtResource("2_eo30v")]
+position = Vector2(1024, 576)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 320.0
+offset_bottom = -456.0
+grow_vertical = 2
+
+[node name="XCountSlider" type="HSlider" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "X count"
+
+[node name="YCountSlider" type="HSlider" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Y count"
+
+[node name="RefreshRateSlider" type="HSlider" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+max_value = 60.0
+step = 12.0
+
+[node name="Label3" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Refresh rate"
+
+[node name="ObjectsManager" type="Node2D" parent="."]
+
+[connection signal="value_changed" from="CanvasLayer/VBoxContainer/XCountSlider" to="." method="_on_x_count_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/VBoxContainer/YCountSlider" to="." method="_on_y_count_slider_value_changed"]
